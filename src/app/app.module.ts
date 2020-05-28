@@ -19,6 +19,7 @@ import { CasepaperComponent } from './casepaper/casepaper.component';
 import {CheifcompComponent} from './casepaper/cheifcomp/cheifcomp.component';
 import { WorkdoneComponent } from './casepaper/workdone/workdone.component';
 import { ConfirmationDialogComponent } from './components/shared/confirmation-dialog/confirmation-dialog.component';
+import { SearchPatComponent } from './casepaper/search-pat/search-pat.component';
 export const APP_DATE_FORMATS = {
   parse: {dateInput: {month: 'short', year: 'numeric', day: 'numeric'}},
   display: {
@@ -37,12 +38,15 @@ export const APP_DATE_FORMATS = {
     DoctorComponent,
     CasepaperComponent,
     WorkdoneComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    SearchPatComponent
   ],
   entryComponents:[
     ConfirmationDialogComponent,
     WorkdoneComponent,
-    CheifcompComponent
+    CheifcompComponent,
+    SearchPatComponent,
+    MyprofileComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { WorkdoneComponent } from './workdone/workdone.component';
+import { SearchPatComponent } from './search-pat/search-pat.component';
 import { CheifcompComponent } from './cheifcomp/cheifcomp.component';
 import { ConfirmationDialogComponent } from '../components/shared/confirmation-dialog/confirmation-dialog.component';
 import { Observable } from 'rxjs';
@@ -54,8 +55,8 @@ export class CasepaperComponent implements OnInit {
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (event.shiftKey && event.which === KEY_CODE.RIGHT_ARROW) { 
-        this.opened = true;
-   
+        // this.opened = true;
+        this.openDialog();
     }
     if (event.shiftKey && event.which === KEY_CODE.CHEIF) { 
       this.openCheif()
@@ -83,6 +84,7 @@ export class CasepaperComponent implements OnInit {
   DataFetch() {
     this.Fetchdata().subscribe(result=>{
       this.profile =result[0];
+      this.history =result[1];
       console.log(this.profile);
     });
 
@@ -95,9 +97,10 @@ export class CasepaperComponent implements OnInit {
   
 
   Fetchdata() {
-     this.history=  this.http.get('http://woxino2096.pythonanywhere.com/dcp_api/patients/400/');
-     this.profile=   this.http.get('http://woxino2096.pythonanywhere.com/dcp_api/patients/400/');
-     return forkJoin([this.profile, this.history]);
+     this.profile=  this.http.get('http://woxino2096.pythonanywhere.com/dcp_api/patient-profile/1/?format=json');
+     this.history=  this.http.get('http://woxino2096.pythonanywhere.com/dcp_api/patient-profile/1/?format=json');
+     
+     return forkJoin([this.profile,this.history]);
 
      }
 
@@ -119,7 +122,7 @@ export class CasepaperComponent implements OnInit {
   //  }  
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(MyprofileComponent, {
+    const dialogRef = this.dialog.open( MyprofileComponent, {
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -147,7 +150,7 @@ export class CasepaperComponent implements OnInit {
   }
 openCheif() {
 
-  const dialogRef = this.dialog.open(CheifcompComponent, {
+  const dialogRef = this.dialog.open(CheifcompComponent , {
     width: '400px',
     data: {data: this.Cdate, animal: this.complain}
     
