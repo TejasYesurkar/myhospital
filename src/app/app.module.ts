@@ -47,6 +47,7 @@ export const APP_DATE_FORMATS = {
     CheifcompComponent,
     SearchPatComponent,
     MyprofileComponent
+    
   ],
   imports: [
     BrowserModule,
